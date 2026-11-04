@@ -1,0 +1,1 @@
+# IATec.Shared.Persistence.EF.AuditOutbox
