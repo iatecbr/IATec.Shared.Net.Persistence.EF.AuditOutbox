@@ -1,0 +1,64 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pr: none
+
+pool:
+  name: IATec-Builds-Agents
+
+variables:
+  - group: nuget-credentials
+  - name: buildConfiguration
+    value: 'Release'
+
+steps:
+  - task: replacetokens@6
+    displayName: 'Replace variables in setup-nuget.sh'
+    inputs:
+      targetFiles: 'setup-nuget.sh'
+      encoding: 'auto'
+      writeBOM: true
+      actionOnMissing: 'warn'
+      keepToken: false
+      tokenPrefix: '#{'
+      tokenSuffix: '}#'
+
+  - task: CmdLine@2
+    displayName: 'Run setup-nuget.sh with Git Bash'
+    inputs:
+      script: |
+        "C:\Program Files\Git\bin\bash.exe" -c "chmod +x ./setup-nuget.sh && ./setup-nuget.sh"
+
+  - task: PowerShell@2
+    displayName: 'Get project version'
+    inputs:
+      targetType: 'inline'
+      script: |
+        $version = [xml](Get-Content  src/IATec.Shared.Net.OutboxLog.csproj)
+        $packageVersion = $version.Project.PropertyGroup.Version
+        Write-Host "##vso[task.setvariable variable=packageVersion]$packageVersion"
+
+  - task: NuGetAuthenticate@0
+    displayName: 'NuGet authenticate'
+
+  - script: dotnet build --configuration $(buildConfiguration)
+    displayName: 'Dotnet build'
+
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: 'pack'
+      packagesToPack: '**/IATec.Shared.Net.OutboxLog.csproj' 
+      packDirectory: '$(Build.ArtifactStagingDirectory)'
+      nobuild: true 
+      versioningScheme: 'byEnvVar'
+      versionEnvVar: 'packageVersion'
+    displayName: 'Pack NuGet package with dotnet pack'
+
+  - task: NuGetCommand@2
+    displayName: 'NuGet push'
+    inputs:
+      command: push
+      publishVstsFeed: 'IATec.Community'
+      allowPackageConflicts: true

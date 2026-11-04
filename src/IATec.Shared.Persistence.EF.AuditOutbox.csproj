@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<PackageId>IATec.Shared.Persistence.EF.AuditOutbox</PackageId>
+		<Title>IATec Shared EF Repository Audit Outbox</Title>
+		<Authors>IATec | Solution | Platform Team</Authors>
+		<Description>Optional audit outbox capability for IATec.Shared.Persistence.EF. Captures audit log entries in the same transaction as the business operation and drains them to a remote audit service with a resilient background worker.</Description>
+		<Copyright>@IATec Solutions</Copyright>
+		<RootNamespace>IATec.Shared.Persistence.EF.AuditOutbox</RootNamespace>
+		<Version>1.0.0</Version>
+		<PackageIconUrl>https://assets-services-dev.sdasystems.org/images/icons/standard.library.icon.png</PackageIconUrl>
+		<PackageIcon>icon.png</PackageIcon>
+		<PackageProjectUrl>https://github.com/iatecbr/IATec.Shared.Net.Persistence.EF.AuditOutbox</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/iatecbr/IATec.Shared.Net.Persistence.EF.AuditOutbox</RepositoryUrl>
+		<RepositoryType>Git</RepositoryType>
+		<PackageTags>net</PackageTags>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>		
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\resources\icons\icon.png" Pack="true" PackagePath="" />
+		<None Include="README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="IATec.Shared.Persistence.EF" Version="2.0.0" />
+		<PackageReference Include="IATec.Shared.HttpClient" Version="3.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.8" />
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="10.0.8" />
+	</ItemGroup>
+</Project>
