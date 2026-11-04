@@ -36,7 +36,7 @@ steps:
     inputs:
       targetType: 'inline'
       script: |
-        $version = [xml](Get-Content  src/IATec.Shared.Net.OutboxLog.csproj)
+        $version = [xml](Get-Content  src/IATec.Shared.Persistence.EF.AuditOutbox.csproj)
         $packageVersion = $version.Project.PropertyGroup.Version
         Write-Host "##vso[task.setvariable variable=packageVersion]$packageVersion"
 
@@ -49,7 +49,7 @@ steps:
   - task: DotNetCoreCLI@2
     inputs:
       command: 'pack'
-      packagesToPack: '**/IATec.Shared.Net.OutboxLog.csproj' 
+      packagesToPack: '**/IATec.Shared.Persistence.EF.AuditOutbox.csproj' 
       packDirectory: '$(Build.ArtifactStagingDirectory)'
       nobuild: true 
       versioningScheme: 'byEnvVar'
