@@ -11,7 +11,7 @@
 		<Description>Optional audit outbox capability for IATec.Shared.Persistence.EF. Captures audit log entries in the same transaction as the business operation and drains them to a remote audit service with a resilient background worker.</Description>
 		<Copyright>@IATec Solutions</Copyright>
 		<RootNamespace>IATec.Shared.Persistence.EF.AuditOutbox</RootNamespace>
-		<Version>1.0.0-RC1</Version>
+		<Version>0.0.1-RC1</Version>
 		<PackageIconUrl>https://assets-services-dev.sdasystems.org/images/icons/standard.library.icon.png</PackageIconUrl>
 		<PackageIcon>icon.png</PackageIcon>
 		<PackageProjectUrl>https://github.com/iatecbr/IATec.Shared.Net.Persistence.EF.AuditOutbox</PackageProjectUrl>
