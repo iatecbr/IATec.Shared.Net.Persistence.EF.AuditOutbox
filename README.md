@@ -85,10 +85,10 @@ Dependencies brought in by the package (the core does NOT inherit them):
 
 | Package | Version |
 |---------|---------|
+| `IATec.Shared.Domain` | `2.0.0` |
 | `IATec.Shared.HttpClient` | `3.0.0` |
 | `Microsoft.EntityFrameworkCore.Relational` | `10.0.8` |
 | `Microsoft.Extensions.Hosting.Abstractions` | `10.0.8` |
-| `IATec.Shared.Persistence.EF` (ProjectReference / PackageReference) | core |
 
 ---
 
